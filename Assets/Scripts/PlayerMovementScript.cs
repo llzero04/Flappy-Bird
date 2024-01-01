@@ -28,7 +28,6 @@ public class PlayerMovementScript : MonoBehaviour
             FindObjectOfType<GameManager>().gameOver();
             FindAnyObjectByType<AudioManager>().stopAudio("GameAudio");
             FindAnyObjectByType<AudioManager>().playAudio("GameOverAudio");
-            // Debug.Log("Game Ober");
             Destroy(gameObject);
         }
 

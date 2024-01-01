@@ -11,11 +11,15 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text gameOverScoreText;
 
+    int highScore;
+
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
         changeScoreText();
+
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     // Update is called once per frame
@@ -40,7 +44,11 @@ public class GameManager : MonoBehaviour
     {
         scoreText.text = "";
         GameOverPanel.SetActive(true);
-        gameOverScoreText.text = "Your Score : " + score.ToString();
+
+        highScore = highScore >= score ? highScore : score;
+        PlayerPrefs.SetInt("HighScore", highScore);
+
+        gameOverScoreText.text = "Your Score : " + score.ToString() + "\n\n" + "Your High Score : " + highScore.ToString();
     }
 
     public void resetLevel()
